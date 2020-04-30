@@ -270,5 +270,3 @@ def supply_demand_curve(date):
         demand_list.append(item['demand'])
 
     return date_list, price_list, supply_list, demand_list
-
-print(mcp_interim('2020-04-01'))
