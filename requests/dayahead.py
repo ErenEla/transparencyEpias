@@ -10,7 +10,7 @@ def get_request_result(query):
 
     #main_url = "https://seffaflik.epias.com.tr/transparency/service/market/"
 
-    url = "https://seffaflik.epias.com.tr/transparency/service/market/"+query
+    url = "https://seffaflik.epias.com.tr/transparency/service/"+query
 
     payload = {}
     headers = {
@@ -39,7 +39,7 @@ def mcp_interim(date):
     '''
     val.date_format_check(date)
 
-    query = "day-ahead-interim-mcp?date="+f'{date}'
+    query = "market/day-ahead-interim-mcp?date="+f'{date}'
 
     json_result = get_request_result(query)
 
@@ -77,7 +77,7 @@ def mcp(startDate, endDate):
 
     val.date_check(startDate, endDate)
 
-    query = "day-ahead-mcp?startDate="+f'{startDate}'+"&endDate="+f'{endDate}'
+    query = "market/day-ahead-mcp?startDate="+f'{startDate}'+"&endDate="+f'{endDate}'
 
     json_result = get_request_result(query)
 
@@ -115,7 +115,7 @@ def diff_fund(startDate, endDate, is_statistic):
 
     val.date_check(startDate, endDate)
 
-    query = "day-ahead-diff-funds?startDate="+f'{startDate}'+"&endDate="+f'{endDate}'
+    query = "market/day-ahead-diff-funds?startDate="+f'{startDate}'+"&endDate="+f'{endDate}'
 
     json_result = get_request_result(query)
 
@@ -153,7 +153,7 @@ def block_amount(startDate, endDate, is_statistic):
 
     val.date_check(startDate, endDate)
 
-    query = "amount-of-block?startDate="+f'{startDate}'+"&endDate="+f'{endDate}'
+    query = "market/amount-of-block?startDate="+f'{startDate}'+"&endDate="+f'{endDate}'
 
     json_result = get_request_result(query)
 
@@ -202,7 +202,7 @@ def block_amount_matched(startDate, endDate, is_statistic):
 
     val.date_check(startDate, endDate)
 
-    query = "amount-of-block?startDate="+f'{startDate}'+"&endDate="+f'{endDate}'
+    query = "market/amount-of-block?startDate="+f'{startDate}'+"&endDate="+f'{endDate}'
 
     json_result = get_request_result(query)
 
@@ -248,7 +248,7 @@ def supply_demand_curve(date):
 
     val.date_format_check(date)
 
-    query = "supply-demand-curve?period="+f'{date}'
+    query = "market/supply-demand-curve?period="+f'{date}'
 
     json_result = get_request_result(query)
 
@@ -270,3 +270,44 @@ def supply_demand_curve(date):
         demand_list.append(item['demand'])
 
     return date_list, price_list, supply_list, demand_list
+
+
+def bilateralContract(startDate, endDate):
+
+    '''
+    This function returns 3 different which includes;
+        -Datetime values for the range of specified dates as firts item.
+        -Quantity values for the range of specified dates as second item.
+        -Next hour values for the range of specified dates as third item.
+
+    Parameters:
+
+    startDate: Start date in YYYY-MM-DD format.
+    endDate: End date in YYYY-MM-DD format.
+
+    '''
+
+    val.date_check(startDate, endDate)
+
+    query = "market/bilateral-contract?startDate="+f'{startDate}'+"&endDate="+f'{endDate}'
+
+    json_result = get_request_result(query)
+
+    key_list = list(json_result['body'].keys())
+
+    key_name = key_list[0]
+
+    response_list = json_result['body'][f'{key_name}']
+
+    date_list = []
+    quantity_list = []
+    next_hour_datelist = []
+
+    for item in response_list:
+        date_list.append(item['date'])
+        quantity_list.append(item['quantity'])
+        next_hour_datelist.append(item['nextHour'])
+
+    return date_list, quantity_list, next_hour_datelist
+
+
