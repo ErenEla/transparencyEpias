@@ -311,3 +311,170 @@ def bilateralContract(startDate, endDate):
     return date_list, quantity_list, next_hour_datelist
 
 
+#secili şirket bilgisi eklenebilir
+
+def bilateralContract_all(eic, startDate, endDate):
+
+    '''
+    This function returns 3 different which includes;
+        -Datetime values for the range of specified dates as firts item.
+        -Bid Quantity values for the range of specified dates as second item.
+        -Ask Quantity values for the range of specified dates as third item.
+
+    Parameters:
+
+    eic: A code for the specific company e.g: "40X000000009447G".
+    startDate: Start date in YYYY-MM-DD format.
+    endDate: End date in YYYY-MM-DD format.
+
+    '''
+
+    val.date_check(startDate, endDate)
+
+    query = "market/bilateral-contract?startDate="+f'{startDate}'+"&endDate="+f'{endDate}'+"&eic="+f'{eic}'
+
+    json_result = get_request_result(query)
+
+    key_list = list(json_result['body'].keys())
+
+    key_name = key_list[0]
+
+    response_list = json_result['body'][f'{key_name}']
+
+    date_list = []
+    quantity_bid = []
+    quantity_ask = []
+
+    for item in response_list:
+        date_list.append(item['date'])
+        quantity_bid.append(item['quantityBid'])
+        quantity_ask.append(item['quantityBidAsk'])
+
+    return date_list, quantity_bid, quantity_ask
+
+
+def market_income_summary(period, startDate, endDate):
+
+    '''
+    This function returns 3 different which includes;
+        -Datetime values for the range of specified dates as firts item.
+        -Income values for the range of specified dates as second item.
+        -Period information for the range of specified dates as third item.
+        -Period type information for the range of specified dates as fourth item.
+
+    Parameters:
+
+    period: Period type shoul be defined as DAILY, WEEKLY, MONTHLY, or PERIODIC.
+    startDate: Start date in YYYY-MM-DD format.
+    endDate: End date in YYYY-MM-DD format.
+
+    '''
+
+    val.date_check(startDate, endDate)
+
+    query = "market/day-ahead-market-income-summary?startDate="+f'{startDate}'+"&endDate="+f'{endDate}'+"&period="+f'{period}'
+
+    json_result = get_request_result(query)
+
+    key_list = list(json_result['body'].keys())
+
+    key_name = key_list[0]
+
+    response_list = json_result['body'][f'{key_name}']
+
+    date_list = []
+    income_list = []
+    period_list = []
+    period_type_list = []
+
+    for item in response_list:
+        date_list.append(item['date'])
+        income_list.append(item['income'])
+        period_list.append(item['period'])
+        period_type_list.append(item['periodTpye'])
+
+    return date_list, income_list, period_list, period_type_list
+
+
+def dayahead_trade_volume(startDate, endDate):
+
+    '''
+    This function returns 3 different which includes;
+        -Datetime values for the range of specified dates as firts item.
+        -Bid trade volume values for the range of specified dates as second item.
+        -Ask trade volume values for the range of specified dates as third item.
+
+    Parameters:
+
+    startDate: Start date in YYYY-MM-DD format.
+    endDate: End date in YYYY-MM-DD format.
+
+    Warning! Bid and ask trade volumes are MATCHED dayahead trade volumes. For ask and bid OFFERS look for dayahead_market_volume.
+
+    '''
+
+    val.date_check(startDate, endDate)
+
+    query = "market/day-ahead-market-trade-volume?startDate="+f'{startDate}'+"&endDate="+f'{endDate}'
+
+    json_result = get_request_result(query)
+
+    key_list = list(json_result['body'].keys())
+
+    key_name = key_list[0]
+
+    response_list = json_result['body'][f'{key_name}']
+
+    date_list = []
+    bid_volume_list = []
+    ask_volume_list = []
+
+    for item in response_list:
+        date_list.append(item['date'])
+        bid_volume_list.append(item['volumeOfBid'])
+        ask_volume_list.append(item['volumeOfAsk'])
+
+    return date_list, bid_volume_list, ask_volume_list
+
+
+
+#bu fonksiyon tamamlanmadı kontrol etmen lazım
+def dayahead_market_volume(eic, startDate, endDate):
+
+    '''
+    This function returns 3 different which includes;
+        -Datetime values for the range of specified dates as firts item.
+        -Bid trade volume values for the range of specified dates as second item.
+        -Ask trade volume values for the range of specified dates as third item.
+
+    Parameters:
+
+    startDate: Start date in YYYY-MM-DD format.
+    endDate: End date in YYYY-MM-DD format.
+
+    Warning! Bid and ask trade volumes are MATCHED dayahead trade volumes. For ask and bid OFFERS look for dayahead_market_volume.
+
+    '''
+
+    val.date_check(startDate, endDate)
+
+    query = "market/day-ahead-market-volume?startDate="+f'{startDate}'+"&endDate="+f'{endDate}'+"&eic="+f'{eic}'
+
+    json_result = get_request_result(query)
+
+    key_list = list(json_result['body'].keys())
+
+    key_name = key_list[0]
+
+    response_list = json_result['body'][f'{key_name}']
+
+    date_list = []
+    bid_volume_list = []
+    ask_volume_list = []
+
+    for item in response_list:
+        date_list.append(item['date'])
+        bid_volume_list.append(item['volumeOfBid'])
+        ask_volume_list.append(item['volumeOfAsk'])
+    
+    return date_list, bid_volume_list, ask_volume_list
