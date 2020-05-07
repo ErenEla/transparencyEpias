@@ -26,9 +26,6 @@ class DayaheadClient:
 
         return json_data
 
-
-
-
     def mcp_interim(self, date):
 
         '''
