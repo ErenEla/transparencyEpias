@@ -58,10 +58,10 @@ class DayaheadClient:
         price_list = []
         hour_list = []
 
-        for index, item_count in enumerate(response_list):
+        for index, item in enumerate(response_list):
             date_list.append(date)
             hour_list.append(index)
-            price_list.append(item_count['marketTradePrice'])
+            price_list.append(item['marketTradePrice'])
 
         return date_list, hour_list, price_list
 

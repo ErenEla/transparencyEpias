@@ -1,4 +1,5 @@
 from dayaheadClient import dayahead
+from intradayClient import intraday
 import pandas as pd 
 from pandas import ExcelWriter
 import openpyxl
@@ -15,4 +16,6 @@ interim_df.to_excel(writer,'Interim MCP')
 writer.save()
 '''
 
-print(dayahead.dayahead_market_volume(startDate='2020-04-01', endDate='2020-04-01'))
+#print(dayahead.dayahead_market_volume(startDate='2020-04-01', endDate='2020-04-01'))
+
+print(intraday.trade_history('2020-04-01','2020-04-01','Hourly')[2])
