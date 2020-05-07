@@ -318,7 +318,7 @@ class DayaheadClient:
 
     #secili şirket bilgisi eklenebilir
 
-    def bilateralContract_all(self, eic, startDate, endDate):
+    def bilateralContract_all(self, startDate, endDate, eic=None):
 
         '''
         This function returns 3 different which includes;
@@ -328,7 +328,7 @@ class DayaheadClient:
 
         Parameters:
 
-        eic: A code for the specific company e.g: "40X000000009447G".
+        eic (Optional): A code for the specific company e.g: "40X000000009447G".
         startDate: Start date in YYYY-MM-DD format.
         endDate: End date in YYYY-MM-DD format.
 
@@ -336,7 +336,10 @@ class DayaheadClient:
 
         val.date_check(startDate, endDate)
 
-        query = "market/bilateral-contract?startDate="+f'{startDate}'+"&endDate="+f'{endDate}'+"&eic="+f'{eic}'
+        if eic != None:
+            query = "market/bilateral-contract?startDate="+f'{startDate}'+"&endDate="+f'{endDate}'+"&eic="+f'{eic}'
+        else:
+            query = "market/bilateral-contract?startDate="+f'{startDate}'+"&endDate="+f'{endDate}'
 
         json_result = self.get_request_result(query)
 
@@ -443,17 +446,26 @@ class DayaheadClient:
 
 
 
-    #bu fonksiyon tamamlanmadı kontrol etmen lazım
-    def dayahead_market_volume(self, eic, startDate, endDate):
+    
+    def dayahead_market_volume(self, startDate, endDate, eic=None):
 
         '''
         This function returns 3 different which includes;
-            -Datetime values for the range of specified dates as firts item.
-            -Bid trade volume values for the range of specified dates as second item.
-            -Ask trade volume values for the range of specified dates as third item.
+            -Returns a dictionary which includes following values;
+                -date
+                -quantityOfAsk
+                -volume
+                -quantityOfBid
+                -priceIndependentBid
+                -priceIndependentOffer
+                -blockBid
+                -blockOffer
+                -matchedBids
+                -matchedOffers
 
         Parameters:
 
+        eic (Optional): A code for the specific company e.g: "40X000000009447G".
         startDate: Start date in YYYY-MM-DD format.
         endDate: End date in YYYY-MM-DD format.
 
@@ -463,7 +475,36 @@ class DayaheadClient:
 
         val.date_check(startDate, endDate)
 
-        query = "market/day-ahead-market-volume?startDate="+f'{startDate}'+"&endDate="+f'{endDate}'+"&eic="+f'{eic}'
+        if eic != None:
+
+            query = "market/day-ahead-market-volume?startDate="+f'{startDate}'+"&endDate="+f'{endDate}'+"&eic="+f'{eic}'
+        else:
+            query = "market/day-ahead-market-volume?startDate="+f'{startDate}'+"&endDate="+f'{endDate}'
+
+        json_result = self.get_request_result(query)
+
+        response_list = json_result['body']['dayAheadMarketVolumeList']
+        
+        return response_list
+
+    def imbalance_hourly(self, startDate, endDate):
+
+        '''
+        This function returns 3 different which includes;
+            -Datetime values for the range of specified dates as firts item.
+            -Hourly total positive imbalance values for the range of specified dates as second item.
+            -Hourly total negative imbalance values for the range of specified dates as third item.
+
+        Parameters:
+
+        startDate: Start date in YYYY-MM-DD format.
+        endDate: End date in YYYY-MM-DD format.
+
+        '''
+
+        val.date_check(startDate, endDate)
+
+        query = "market/energy-imbalance-hourly?startDate="+f'{startDate}'+"&endDate="+f'{endDate}'
 
         json_result = self.get_request_result(query)
 
@@ -474,14 +515,95 @@ class DayaheadClient:
         response_list = json_result['body'][f'{key_name}']
 
         date_list = []
-        bid_volume_list = []
-        ask_volume_list = []
+        postive_imb_list = []
+        negative_imb_list = []
 
         for item in response_list:
             date_list.append(item['date'])
-            bid_volume_list.append(item['volumeOfBid'])
-            ask_volume_list.append(item['volumeOfAsk'])
-        
-        return date_list, bid_volume_list, ask_volume_list
+            postive_imb_list.append(item['positiveImbalance'])
+            negative_imb_list.append(item['negativeImbalance'])
+
+        return date_list, postive_imb_list, negative_imb_list
+
+
+
+    def imbalance_monthly(self, startDate, endDate):
+
+        '''
+        This function returns 3 different which includes;
+            -Datetime values for the range of specified dates as firts item.
+            -Montly total positive imbalance values for the range of specified dates as second item.
+            -Montly total negative imbalance values for the range of specified dates as third item.
+
+        Parameters:
+
+        startDate: Start date in YYYY-MM-DD format.
+        endDate: End date in YYYY-MM-DD format.
+
+        '''
+
+        val.date_check(startDate, endDate)
+
+        query = "market/energy-imbalance-hourly?startDate="+f'{startDate}'+"&endDate="+f'{endDate}'
+
+        json_result = self.get_request_result(query)
+
+        key_list = list(json_result['body'].keys())
+
+        key_name = key_list[0]
+
+        response_list = json_result['body'][f'{key_name}']
+
+        date_list = []
+        postive_imb_list = []
+        negative_imb_list = []
+
+        for item in response_list:
+            date_list.append(item['date'])
+            postive_imb_list.append(item['positiveImbalance'])
+            negative_imb_list.append(item['negativeImbalance'])
+
+        return date_list, postive_imb_list, negative_imb_list
+    
+    def imbalance_amount(self, startDate, endDate):
+
+        '''
+        This function returns 3 different which includes;
+            -Date values for the range of specified dates as firts item.
+            -Time values for the range of specified dates as firts item.
+            -Total positive imbalance amount values for the range of specified dates as second item.
+            -Total negative imbalance amount values for the range of specified dates as third item.
+
+        Parameters:
+
+        startDate: Start date in YYYY-MM-DD format.
+        endDate: End date in YYYY-MM-DD format.
+
+        '''
+
+        val.date_check(startDate, endDate)
+
+        query = "market/imbalance-amount?startDate="+f'{startDate}'+"&endDate="+f'{endDate}'
+
+        json_result = self.get_request_result(query)
+
+        key_list = list(json_result['body'].keys())
+
+        key_name = key_list[0]
+
+        response_list = json_result['body'][f'{key_name}']
+
+        date_list = []
+        time_list = []
+        postive_imb_list = []
+        negative_imb_list = []
+
+        for item in response_list:
+            date_list.append(item['date'])
+            time_list.append(item['time'])
+            postive_imb_list.append(item['positiveImbalance'])
+            negative_imb_list.append(item['negativeImbalance'])
+
+        return date_list, time_list, postive_imb_list, negative_imb_list
 
 dayahead = DayaheadClient()
