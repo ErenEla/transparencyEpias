@@ -13,7 +13,6 @@ def date_check(startDate, endDate):
     else:
         pass
 
-
 def date_format_check(date):
 
     try:

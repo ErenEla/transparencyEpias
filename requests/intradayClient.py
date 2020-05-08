@@ -24,7 +24,6 @@ class IntradayClient:
 
         return json_data
 
-    
     def weighted_average_price(self, startDate, endDate):
 
         '''
@@ -59,7 +58,6 @@ class IntradayClient:
 
         return date_list, price_list
     
-
     def income_intraday(self, startDate, endDate):
 
         '''
@@ -198,7 +196,6 @@ class IntradayClient:
 
         return date_list, sell_quantity, buy_quantity
 
-    
     def trade_history(self, startDate, endDate, contract_type):
 
         '''
@@ -261,10 +258,15 @@ class IntradayClient:
                 houryl_contract_list.append(item['conract'])
 
         if contract_type == 'Block':
+
             return block_date_list, block_id_list, block_contract_list, block_quantity, block_price
+
         elif contract_type == 'Hourly':
+
             return hourly_date_list, houry_id_list, houryl_contract_list, hourly_quantity, hourly_price
+
         else:
+            
             raise Exception('contract_type argument has to be Block or Hourly!')
 
 intraday = IntradayClient()

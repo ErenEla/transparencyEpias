@@ -5,9 +5,7 @@ from datetime import timedelta
 from datetime import datetime
 import validate as val
 
-
 class DayaheadClient:
-
 
     def get_request_result(self, query):
 
@@ -62,7 +60,6 @@ class DayaheadClient:
 
         return date_list, hour_list, price_list
 
-
     def mcp(self, startDate, endDate):
 
         '''
@@ -98,7 +95,6 @@ class DayaheadClient:
 
         return datetime_list, price_list
 
-
     def diff_fund(self, startDate, endDate, is_statistic):
 
         '''
@@ -133,7 +129,6 @@ class DayaheadClient:
             response_list = json_result['body'][f'{key_name}']
 
         return response_list
-
 
     def block_amount(self, startDate, endDate, is_statistic):
         '''
@@ -312,9 +307,6 @@ class DayaheadClient:
 
         return date_list, quantity_list, next_hour_datelist
 
-
-    #secili şirket bilgisi eklenebilir
-
     def bilateralContract_all(self, startDate, endDate, eic=None):
 
         '''
@@ -440,9 +432,6 @@ class DayaheadClient:
             ask_volume_list.append(item['volumeOfAsk'])
 
         return date_list, bid_volume_list, ask_volume_list
-
-
-
     
     def dayahead_market_volume(self, startDate, endDate, eic=None):
 
@@ -521,8 +510,6 @@ class DayaheadClient:
             negative_imb_list.append(item['negativeImbalance'])
 
         return date_list, postive_imb_list, negative_imb_list
-
-
 
     def imbalance_monthly(self, startDate, endDate):
 
