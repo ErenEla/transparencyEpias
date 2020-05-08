@@ -1,4 +1,4 @@
 .vscode/launch.json
 .vscode/settings.json
 test.py
-C:/Users/eren/Documents/transparencyEpias/transparencyEpias\requests\__pycache__\dayaheadClient.cpython-38.pyc
+*.pyc
