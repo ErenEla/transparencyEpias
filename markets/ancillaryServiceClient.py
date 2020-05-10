@@ -24,7 +24,6 @@ class ancillaryServicesClient:
 
         return json_data
 
-
 def pfc_amount(self, startDate, endDate):
 
         '''
