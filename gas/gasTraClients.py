@@ -286,7 +286,11 @@ class gasClient:
         '''
 
         val.date_check(startDate, endDate)
-        val.date_format_check(date)
+        
+        if date != None:
+            val.date_format_check(date)
+        else:
+            pass
 
         query = "stp/bluecode-operation?"+"startDate="+f'{startDate}'+"endDate="+f'{endDate}'+"period="+f'{date}'
 
@@ -333,7 +337,6 @@ class gasClient:
         '''
 
         val.date_check(startDate, endDate)
-        val.date_format_check(date)
 
         query = "stp/daily-price?"+"startDate="+f'{startDate}'+"endDate="+f'{endDate}'
 
