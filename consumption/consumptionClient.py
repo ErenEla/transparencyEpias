@@ -383,7 +383,5 @@ class consumptionClient:
             svw2_list.append(item['st'])
 
         return date_list, svw2_list
-    
-
-
+        
 consumption = consumptionClient()
