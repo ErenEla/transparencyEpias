@@ -66,7 +66,7 @@ class consumptionClient:
 
         Parameters:
 
-        Date: Specific date in YYYY-MM-DD format.
+        None
 
         '''
 
@@ -122,7 +122,7 @@ class consumptionClient:
 
         Parameters:
 
-        Date: Specific date in YYYY-MM-DD format.
+        None.
 
         '''
 
@@ -346,7 +346,7 @@ class consumptionClient:
             date_list.append(item['date'])
             swv_list.append(item['swv'])
 
-        return date_list, consumption_list
+        return date_list, swv_list
     
     def consumption_eligible(self, date):
 
