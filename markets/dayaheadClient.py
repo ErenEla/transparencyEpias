@@ -3,7 +3,7 @@ import requests
 import json
 from datetime import timedelta 
 from datetime import datetime
-import validate as val
+from markets import validate as val
 
 class DayaheadClient:
 
