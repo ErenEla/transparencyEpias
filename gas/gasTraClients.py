@@ -167,7 +167,6 @@ class gasClient:
             -SystemDirection
             -Type
 
-
         Parameters:
 
         startDate: Start date in YYYY-MM-DD format.
@@ -515,7 +514,6 @@ class gasClient:
             -positiveImbalanceTradeValue
             -type
 
-
         Parameters:
 
         startDate: Start date in YYYY-MM-DD format.
@@ -725,5 +723,104 @@ class gasClient:
             state_list.append(item['state'])
 
         return g_day_list, price_list, priceType_list, state_list
+    
+    def trade_value(self, startDate, endDate):
+
+        '''
+        This function returns a dictionary including;
+            -contractName
+            -contractTradeValue
+            -dayAfterTradeValue
+            -dayAheadTradeValue
+            -gasDay
+            -gasReferenceTradeValue
+            -intraDayTradeValue
+
+        Parameters:
+
+        startDate: Start date in YYYY-MM-DD format.
+        endDate: End date in YYYY-MM-DD format.
+
+        '''
+
+        val.date_check(startDate, endDate)
+
+        query = "stp/trade-value?"+"startDate="+f'{startDate}'+"&endDate="+f'{endDate}'
+
+        json_result = self.get_request_result(query)
+
+        key_list = list(json_result['body'].keys())
+
+        key_name = key_list[0]
+
+        response_list = json_result['body'][f'{key_name}']
+
+        return response_list
+    
+    def transaction_history(self, startDate, endDate):
+
+        '''
+        This function returns a dictionary including;
+            -contractName
+            -id
+            -mathcingDate
+            -price
+            -quantity
+
+        Parameters:
+
+        startDate: Start date in YYYY-MM-DD format.
+        endDate: End date in YYYY-MM-DD format.
+
+        '''
+
+        val.date_check(startDate, endDate)
+
+        query = "stp/transaction-history?"+"startDate="+f'{startDate}'+"&endDate="+f'{endDate}'
+
+        json_result = self.get_request_result(query)
+
+        key_list = list(json_result['body'].keys())
+
+        key_name = key_list[0]
+
+        response_list = json_result['body'][f'{key_name}']
+
+        return response_list
+    
+    def zero_balance(self, startDate, endDate):
+
+        '''
+        This function returns 2 lists including;
+            -Gas day date information as first item.
+            -Zero balance amount as second item.
+
+        Parameters:
+
+        startDate: Start date in YYYY-MM-DD format.
+        endDate: End date in YYYY-MM-DD format.
+
+        '''
+
+        val.date_check(startDate, endDate)
+
+        query = "stp/zero-balance?"+"startDate="+f'{startDate}'+"&endDate="+f'{endDate}'
+
+        json_result = self.get_request_result(query)
+
+        key_list = list(json_result['body'].keys())
+
+        key_name = key_list[0]
+
+        response_list = json_result['body'][f'{key_name}']
+
+        zero_b_list = []
+        g_day_list = []
+
+        for item in response_list:
+            zero_b_list.append(item['zeroBalance'])
+            g_day_list.append(item['gasDay'])
+
+        return g_day_list, zero_b_list
 
 gas = gasClient()
