@@ -55,5 +55,31 @@ class mcpClient:
         
 mcp = mcpClient()
 
+'''
+class conReportClient:
+
+    def weekly_consumption_trend(self, week_count):
+
+        current_date = datetime.today()
+
+        current_date_formatted = datetime.strftime(current_date, '%Y-%m-%d')
+
+        yesterday_date = current_date_formatted - timedelta(days=-1)
+    
+        week_start = yesterday_date - timedelta(days=-7*week_count)
+
+        amount_list = consumptionClient.consumption.consumption_realtime(week_start,yesterday_date)[1]
+        date_list = consumptionClient.consumption.consumption_realtime(week_start,yesterday_date)[0]
+
+        weekly_amount = []
+
+        for week in range(1, week_count):
+            weekly_total = sum(amount_list[0:24*7*week])
+            weekly_amount.append(weekly_total)
+        
+        for totals in weekly_amount:
+
+'''
+
 
 
