@@ -64,7 +64,9 @@ from transparency_epias.tools import reportClient
 reportClient.reports.compare_price()
 ```
 ```sh
->> User should get a xlsx document includes MCP, SMP, and Weighted Avarage Price <br/> values to the path that python runs.
+>> User should get a xlsx document includes MCP, SMP, and Weighted Avarage Price 
+
+values to the path that python runs.
 ```
 
 License
