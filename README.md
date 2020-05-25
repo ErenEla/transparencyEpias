@@ -9,10 +9,10 @@ transparencyEpias is a package which consumes Epias Transparency Rest Web Servic
   - Consumption Data Services
   - Natural Gas Data Services
   - Market Data Services<br/>
-    --Dayahead Market Data <br/>
-    --Intraday Market Data <br/>
-    --Balancing Power Market Data<br/>
-    --Ancillary Services Data<br/>
+    -Dayahead Market Data <br/>
+    -Intraday Market Data <br/>
+    -Balancing Power Market Data<br/>
+    -Ancillary Services Data<br/>
  - Production Data Services<br/>
  - Tools (Which includes useful functions like exporting excel, creating basic report etc. )
 
@@ -64,7 +64,7 @@ from transparency_epias.tools import reportClient
 reportClient.reports.compare_price()
 ```
 ```sh
->> User should get an xlsx document includes MCP, SMP, and Weighted Avarage Price values to the path that python runs.
+>> User should get a xlsx document includes MCP, SMP, and Weighted Avarage Price values to the path that python runs.
 ```
 
 License
