@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name="transparency_epias", # Replace with your own username
+    name="transparencyEpias", # Replace with your own username
     version="0.0.2",
     author="Eren Ela",
     author_email="ela.eren1@gmail.com",
