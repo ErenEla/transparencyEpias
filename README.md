@@ -8,12 +8,12 @@ transparencyEpias is a package which consumes Epias Transparency Rest Web Servic
 
   - Consumption Data Services
   - Natural Gas Data Services
-  - Market Data Services
-    --Dayahead Market Data 
-    --Intraday Market Data 
-    --Balancing Power Market Data
-    --Ancillary Services Data
- - Production Data Services
+  - Market Data Services<br/>
+    --Dayahead Market Data <br/>
+    --Intraday Market Data <br/>
+    --Balancing Power Market Data<br/>
+    --Ancillary Services Data<br/>
+ - Production Data Services<br/>
  - Tools (Which includes useful functions like exporting excel, creating basic report etc. )
 
 ### Installation
@@ -76,4 +76,5 @@ Soruce
 ----
 
 https://seffaflik.epias.com.tr/transparency/
+
 https://seffaflik.epias.com.tr/transparency/technical/en/

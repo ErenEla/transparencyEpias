@@ -45,7 +45,7 @@ class reportsClient:
         mcp_df.to_excel(f'daily_mcp_{current_date_formatted}.xlsx')
         print(f'Report Created Successfully! Referance Date {current_date_formatted}')
 
-    def excel_export(self, startDate, endDate):
+    def mcp_excel_export(self, startDate, endDate):
 
         mcp_list = dc.dayahead.mcp(startDate, endDate)
 
