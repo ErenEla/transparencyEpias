@@ -3,7 +3,7 @@ import requests
 import json
 from datetime import timedelta 
 from datetime import datetime
-import validate as val
+from transparency_epias.markets import validate as val
 
 class balancingPowerClient:
 
@@ -55,7 +55,7 @@ class balancingPowerClient:
         price_list = []
 
         for item in response_list:
-            date_list.append(item['effectiveDate'])
+            date_list.append(item['date'])
             direction_list.append(item['smpDirection'])
             price_list.append(item['price'])
 

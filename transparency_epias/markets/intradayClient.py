@@ -3,7 +3,7 @@ import requests
 import json
 from datetime import timedelta 
 from datetime import datetime
-import validate as val
+from transparency_epias.markets import validate as val
 
 class IntradayClient:
 
