@@ -35,7 +35,7 @@ class gasTransmissionClient:
 
         val.date_check(startDate, endDate)
 
-        query = "stp-transmission/actualization?"+"startDate="+f'{startDate}'+"endDate="+f'{endDate}'
+        query = "stp-transmission/actualization?"+"startDate="+f'{startDate}'+"&endDate="+f'{endDate}'
 
         json_result = self.get_request_result(query)
 
@@ -71,7 +71,7 @@ class gasTransmissionClient:
 
         val.date_check(startDate, endDate)
 
-        query = "stp-transmission/transport?"+"startDate="+f'{startDate}'+"endDate="+f'{endDate}'
+        query = "stp-transmission/transport?"+"startDate="+f'{startDate}'+"&endDate="+f'{endDate}'
 
         json_result = self.get_request_result(query)
 

@@ -34,7 +34,7 @@ $ python -m pip install transparencyEpias
 
 ### Sample Usage
 
-To be able to reach file user shoul follow instructions below.
+To be able to reach file user should follow instructions below.
 - MCP Values Example:
  
 ```python

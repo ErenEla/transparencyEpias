@@ -159,7 +159,7 @@ class consumptionClient:
 
         val.date_format_check(date)
 
-        query = "consumption/get-planned-outage?"+"period="+f'{date}'+"distributionCompanyId="+f'{companyId}'+"provinceId="+f'{provinceId}'
+        query = "consumption/get-planned-outage?"+"period="+f'{date}'+"&distributionCompanyId="+f'{companyId}'+"&provinceId="+f'{provinceId}'
 
         json_result = self.get_request_result(query)
 
@@ -192,7 +192,7 @@ class consumptionClient:
 
         val.date_format_check(date)
 
-        query = "consumption/get-unplanned-outage?"+"period="+f'{date}'+"distributionCompanyId="+f'{companyId}'+"provinceId="+f'{provinceId}'
+        query = "consumption/get-unplanned-outage?"+"period="+f'{date}'+"&distributionCompanyId="+f'{companyId}'+"&provinceId="+f'{provinceId}'
 
         json_result = self.get_request_result(query)
 
@@ -231,7 +231,7 @@ class consumptionClient:
 
         val.date_check(startDate, endDate)
 
-        query = "consumption/load-estimation-plan?"+"startDate="+f'{startDate}'+"endDate="+f'{endDate}'
+        query = "consumption/load-estimation-plan?"+"startDate="+f'{startDate}'+"&endDate="+f'{endDate}'
 
         json_result = self.get_request_result(query)
 
@@ -259,7 +259,7 @@ class consumptionClient:
 
         val.date_check(startDate, endDate)
 
-        query = "consumption/real-time-consumption?"+"startDate="+f'{startDate}'+"endDate="+f'{endDate}'
+        query = "consumption/real-time-consumption?"+"startDate="+f'{startDate}'+"&endDate="+f'{endDate}'
 
         json_result = self.get_request_result(query)
 
@@ -294,7 +294,7 @@ class consumptionClient:
 
         val.date_check(startDate, endDate)
 
-        query = "consumption/swv?"+"startDate="+f'{startDate}'+"endDate="+f'{endDate}'
+        query = "consumption/swv?"+"startDate="+f'{startDate}'+"&endDate="+f'{endDate}'
 
         json_result = self.get_request_result(query)
 
@@ -329,7 +329,7 @@ class consumptionClient:
 
         val.date_check(startDate, endDate)
 
-        query = "consumption/under-supply-liability-consumption?"+"startDate="+f'{startDate}'+"endDate="+f'{endDate}'
+        query = "consumption/under-supply-liability-consumption?"+"startDate="+f'{startDate}'+"&endDate="+f'{endDate}'
 
         json_result = self.get_request_result(query)
 
