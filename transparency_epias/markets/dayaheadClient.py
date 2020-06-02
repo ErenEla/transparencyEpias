@@ -223,7 +223,7 @@ class DayaheadClient:
             for item in response_list:
                 date_list.append(item['date'])
                 macthed_purch_amount_list.append(item['amountOfPurchasingTowardsMatchBlock'])
-                matched_sale_amount_list.append(item['amountOfSalesTowardsBlock'])
+                matched_sale_amount_list.append(item['amountOfSalesTowardsMatchBlock'])
 
             return date_list, matched_sale_amount_list, macthed_purch_amount_list
 
