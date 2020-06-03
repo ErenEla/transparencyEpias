@@ -124,4 +124,8 @@ class reportsClient:
 reports = reportsClient()
 
 
+# ISO format to datetime will be added
+# write sql function will be added 
+# Turkey calendar dates (holidays) will be added
+
 
