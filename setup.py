@@ -6,7 +6,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="transparencyEpias", # Replace with your own username
-    version="0.0.2",
+    version="0.0.3",
     author="Eren Ela",
     author_email="ela.eren1@gmail.com",
     description="Package for EPIAS (Turkish Electricity Market Operating Company) Transparency API Service",
